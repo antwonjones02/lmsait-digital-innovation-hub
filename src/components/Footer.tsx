@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <a href="#" className="font-display text-2xl font-bold">
-                LMSAIT
+                LMS & AI Technology
               </a>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} LMSAIT. All rights reserved.
+            © {new Date().getFullYear()} LMS & AI Technology. All rights reserved.
           </p>
           <button 
             onClick={scrollToTop}

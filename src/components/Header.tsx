@@ -36,7 +36,7 @@ const Header: React.FC = () => {
       <div className="container-custom flex items-center justify-between">
         <a href="#" className="flex items-center">
           <span className="font-display text-2xl font-bold transition-colors">
-            LMSAIT
+            LMS & AI Technology
           </span>
         </a>
         

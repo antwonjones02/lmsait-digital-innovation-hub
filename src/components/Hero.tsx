@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
           
           <h1 className="h1 mb-6 text-white glow-text font-display">
             <AnimatedText 
-              text="Transforming Business Through Innovation" 
+              text="Transforming Learning Through Innovation" 
               delay={200}
               className="text-balance"
             />
@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
           
           <p className="text-xl text-blue-100/90 mb-8 mx-auto max-w-2xl text-balance">
             <AnimatedText 
-              text="Leverage our cutting-edge AI and machine learning solutions to optimize operations, increase efficiency, and drive sustainable growth for your organization." 
+              text="Leverage our cutting-edge AI and machine learning solutions to optimize learning experiences, increase educational effectiveness, and drive sustainable development for your organization." 
               delay={400}
             />
           </p>

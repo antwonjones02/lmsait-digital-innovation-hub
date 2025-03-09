@@ -13,7 +13,7 @@ const VideoBackground: React.FC = () => {
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source 
-          src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-city-at-night-11562-large.mp4" 
+          src="https://assets.mixkit.co/videos/preview/mixkit-digital-data-flow-of-a-city-at-night-12310-large.mp4" 
           type="video/mp4"
         />
         Your browser does not support the video tag.

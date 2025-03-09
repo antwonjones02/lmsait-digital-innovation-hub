@@ -1,3 +1,4 @@
+
 import React from 'react';
 import AnimatedText from './AnimatedText';
 import { CheckCircle } from 'lucide-react';

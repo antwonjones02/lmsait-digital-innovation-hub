@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from './Button';
 import AnimatedText from './AnimatedText';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Award, Code, Rocket } from 'lucide-react';
 import VideoBackground from './VideoBackground';
 
 const Hero: React.FC = () => {
@@ -32,37 +32,48 @@ const Hero: React.FC = () => {
           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
         `}>
           <div className="mb-6 inline-block">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-amber-100/80 text-amber-800 backdrop-blur-sm">
-              Traditional Canarian Desserts
+            <span className="award-badge">
+              <Award className="h-4 w-4 mr-1" /> Award-Winning Technology
             </span>
           </div>
           
-          <h1 className="h1 mb-6 text-white">
+          <h1 className="h1 mb-6 text-white glow-text font-display">
             <AnimatedText 
-              text="Discover the Magic of Frangollo" 
+              text="Transforming Business Through Innovation" 
               delay={200}
               className="text-balance"
             />
           </h1>
           
-          <p className="text-xl text-white/90 mb-8 mx-auto max-w-2xl text-balance">
+          <p className="text-xl text-blue-100/90 mb-8 mx-auto max-w-2xl text-balance">
             <AnimatedText 
-              text="Explore the rich tradition of Canarian desserts through our authentic Frangollo recipes, techniques, and regional variations." 
+              text="Leverage our cutting-edge AI and machine learning solutions to optimize operations, increase efficiency, and drive sustainable growth for your organization." 
               delay={400}
             />
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="group bg-amber-600 hover:bg-amber-700 text-white">
-              Explore Recipes
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Button size="lg" className="group">
+              Explore Solutions
+              <Rocket className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button variant="outline" size="lg" className="bg-white/10 text-white border-amber-300/40 hover:bg-white/20">
-              Watch Preparation
+            <Button variant="outline" size="lg" className="text-blue-100 border-blue-400/40 hover:bg-blue-900/20">
+              <Code className="mr-2 h-4 w-4" />
+              View Documentation
             </Button>
+          </div>
+          
+          {/* Award badges */}
+          <div className="mt-12 flex flex-wrap justify-center gap-3 opacity-80">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Award Badge" className="h-10 grayscale hover:grayscale-0 transition-all" />
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968771.png" alt="Award Badge" className="h-10 grayscale hover:grayscale-0 transition-all" />
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968886.png" alt="Award Badge" className="h-10 grayscale hover:grayscale-0 transition-all" />
           </div>
         </div>
       </div>
+      
+      {/* Tech grid overlay */}
+      <div className="absolute inset-0 tech-grid opacity-20 pointer-events-none"></div>
       
       {/* Gradient overlay at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />

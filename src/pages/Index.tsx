@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
-import About from '@/components/About';
 import Testimonials from '@/components/Testimonials';
-import Contact from '@/components/Contact';
+import Pricing from '@/components/Pricing';
 import Footer from '@/components/Footer';
 
 const Index: React.FC = () => {
@@ -50,12 +48,10 @@ const Index: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow pt-16">
         <Hero />
-        <Services />
-        <About />
         <Testimonials />
-        <Contact />
+        <Pricing />
       </main>
       <Footer />
     </div>

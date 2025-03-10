@@ -59,7 +59,7 @@ const Header: React.FC = () => {
         <a href="#" className="flex items-center">
           <span className={cn(
             "font-display text-2xl font-bold transition-all duration-300",
-            isScrolled ? "text-white" : "text-white gradient-text"
+            isScrolled ? "text-slate-900" : "text-slate-900"
           )}>
             LMS & AI Technology
           </span>
@@ -73,9 +73,9 @@ const Header: React.FC = () => {
                 <a 
                   href={item.href}
                   className={cn(
-                    "text-foreground/80 hover:text-foreground font-medium transition-all duration-200 relative py-1",
-                    activeSection === item.href ? "text-white after:w-full" : "text-blue-100/80 after:w-0",
-                    "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-indigo-400 after:transition-all hover:after:w-full"
+                    "text-slate-700 hover:text-slate-900 font-medium transition-all duration-200 relative py-1",
+                    activeSection === item.href ? "text-indigo-700 after:w-full" : "after:w-0",
+                    "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-indigo-500 after:transition-all hover:after:w-full"
                   )}
                 >
                   {item.label}
@@ -83,14 +83,14 @@ const Header: React.FC = () => {
               </li>
             ))}
           </ul>
-          <Button className="btn-gradient text-white shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 transition-all duration-300">
+          <Button className="btn-gradient text-white shadow-md hover:shadow-lg shadow-indigo-600/10 hover:shadow-indigo-600/20 transition-all duration-300">
             Get Started <ChevronRight className="ml-1 h-4 w-4" />
           </Button>
         </nav>
         
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden focus:outline-none text-white"
+          className="md:hidden focus:outline-none text-slate-900"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
@@ -101,7 +101,7 @@ const Header: React.FC = () => {
       {/* Mobile Navigation */}
       <div 
         className={cn(
-          'md:hidden absolute left-0 right-0 top-full px-4 py-5 glass transition-all duration-300 border-t border-slate-700/30',
+          'md:hidden absolute left-0 right-0 top-full px-4 py-5 glass transition-all duration-300 border-t border-slate-200',
           isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0 pointer-events-none'
         )}
       >
@@ -112,7 +112,7 @@ const Header: React.FC = () => {
                 href={item.href}
                 className={cn(
                   "block py-2 font-medium transition-colors",
-                  activeSection === item.href ? "text-white" : "text-blue-100/80"
+                  activeSection === item.href ? "text-indigo-700" : "text-slate-700"
                 )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >

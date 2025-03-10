@@ -101,117 +101,105 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section id="testimonials" className="section bg-gradient-to-b from-slate-50 to-indigo-50 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 tech-grid opacity-30 pointer-events-none"></div>
-      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white to-transparent"></div>
-      
-      {/* Animated gradient orbs */}
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-indigo-600/5 rounded-full filter blur-3xl animate-pulse-subtle"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full filter blur-3xl animate-pulse-subtle" style={{ animationDelay: '2s' }}></div>
-      
-      <div className={`container-custom relative z-10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="text-center mb-16">
-          <h2 className="h2 mb-4 text-slate-900">
-            <span className="gradient-text">What Our Clients Say</span>
-          </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto text-balance">
-            Discover how our solutions have transformed learning experiences and driven success for organizations worldwide.
-          </p>
-        </div>
-        
-        <div className="max-w-4xl mx-auto">
-          <div className="relative frosted-card rounded-2xl shadow-lg p-8 md:p-10 overflow-hidden">
-            {/* Quote icon */}
-            <div className="absolute top-6 right-6 text-indigo-100">
-              <Quote size={120} className="opacity-20" />
+    <section id="testimonials" className="py-20 bg-slate-50 relative overflow-hidden">
+      <div className="container-custom relative z-10">
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium mb-4">
+              SUCCESS STORIES
             </div>
-            
-            {/* Testimonial content */}
-            <div className="relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+              What Our Clients Are Saying
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Discover how our learning management system has transformed education and training for organizations worldwide.
+            </p>
+          </div>
+          
+          {/* Testimonial cards in grid - similar to trainingsites.io */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {testimonials.map((testimonial, index) => (
               <div 
-                className={`transition-all duration-500 ease-in-out ${
-                  isAnimating ? 'opacity-0 translate-x-10' : 'opacity-100 translate-x-0'
-                }`}
+                key={testimonial.id}
+                className="bg-white rounded-xl p-6 shadow-md border border-slate-100 hover:shadow-lg transition-all duration-300"
               >
-                {/* Rating stars */}
-                <div className="flex mb-6">
-                  {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                    <Star key={i} size={20} className="text-yellow-500 fill-yellow-500 mr-1" />
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} size={18} className="text-yellow-500 fill-yellow-500 mr-1" />
                   ))}
                 </div>
                 
-                <blockquote className="text-xl md:text-2xl font-medium text-slate-800 mb-8 leading-relaxed">
-                  "{testimonials[activeIndex].quote}"
+                <blockquote className="text-slate-700 mb-6 italic">
+                  "{testimonial.quote.length > 150 ? `${testimonial.quote.substring(0, 150)}...` : testimonial.quote}"
                 </blockquote>
                 
                 <div className="flex items-center">
-                  <div className="mr-4">
-                    <img 
-                      src={testimonials[activeIndex].image} 
-                      alt={testimonials[activeIndex].author}
-                      className="w-14 h-14 rounded-full object-cover border-2 border-indigo-100"
-                    />
-                  </div>
+                  <img 
+                    src={testimonial.image} 
+                    alt={testimonial.author}
+                    className="w-12 h-12 rounded-full object-cover border-2 border-indigo-100 mr-4"
+                  />
                   <div>
-                    <div className="font-semibold text-slate-900">{testimonials[activeIndex].author}</div>
-                    <div className="text-indigo-600">{testimonials[activeIndex].title}</div>
-                    <div className="text-sm text-slate-500">{testimonials[activeIndex].company}</div>
+                    <div className="font-semibold text-slate-900">{testimonial.author}</div>
+                    <div className="text-sm text-slate-500">{testimonial.company}</div>
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+          
+          {/* Featured testimonial - similar to trainingsites.io */}
+          <div className="bg-indigo-600 rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 opacity-10">
+              <Quote size={200} />
             </div>
             
-            {/* Navigation dots */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    activeIndex === index 
-                      ? 'bg-indigo-600 w-8' 
-                      : 'bg-slate-300 hover:bg-slate-400'
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
+              <div>
+                <div className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                  "The most intuitive and powerful learning platform we've ever used."
+                </div>
+                
+                <blockquote className="text-indigo-100 mb-8 text-lg">
+                  After implementing LMS & AI Technology's platform, we saw a 45% increase in course completion rates and received overwhelmingly positive feedback from both instructors and students. The AI-powered recommendations have been a game-changer for personalized learning.
+                </blockquote>
+                
+                <div className="flex items-center">
+                  <img 
+                    src="https://randomuser.me/api/portraits/women/45.jpg" 
+                    alt="Jennifer Martinez"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-indigo-400 mr-4"
+                  />
+                  <div>
+                    <div className="font-semibold text-white text-lg">Jennifer Martinez</div>
+                    <div className="text-indigo-200">Chief Learning Officer, TechEdu Global</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="hidden lg:block">
+                <img 
+                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                  alt="Team collaborating"
+                  className="rounded-xl shadow-lg"
                 />
-              ))}
-            </div>
-            
-            {/* Navigation arrows */}
-            <div className="absolute top-1/2 left-0 right-0 flex justify-between items-center -translate-y-1/2 px-4">
-              <button 
-                onClick={prevTestimonial}
-                className="bg-white hover:bg-slate-50 text-slate-700 p-2 rounded-full shadow-md transition-all"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button 
-                onClick={nextTestimonial}
-                className="bg-white hover:bg-slate-50 text-slate-700 p-2 rounded-full shadow-md transition-all"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight size={20} />
-              </button>
+              </div>
             </div>
           </div>
-        </div>
-        
-        {/* Logos of clients */}
-        <div className="mt-20">
-          <p className="text-center text-sm uppercase tracking-wider text-slate-500 mb-8">Trusted by leading organizations</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png" alt="Google" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity hover-lift" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/2560px-IBM_logo.svg.png" alt="IBM" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity hover-lift" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png" alt="Microsoft" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity hover-lift" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" alt="Amazon" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity hover-lift" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png" alt="Netflix" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity hover-lift" />
+          
+          {/* Logos section */}
+          <div className="mt-20 text-center">
+            <p className="text-sm uppercase tracking-wider text-slate-500 mb-8">Trusted by leading organizations worldwide</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png" alt="Google" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/2560px-IBM_logo.svg.png" alt="IBM" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png" alt="Microsoft" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" alt="Amazon" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png" alt="Netflix" className="h-6 md:h-8 opacity-60 hover:opacity-100 transition-opacity" />
+            </div>
           </div>
         </div>
       </div>
-      
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-indigo-50 to-transparent"></div>
     </section>
   );
 };

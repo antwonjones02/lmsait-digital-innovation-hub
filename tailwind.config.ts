@@ -21,7 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
-				display: ['SF Pro Display', 'Inter', 'sans-serif']
+				display: ['Space Grotesk', 'Inter', 'sans-serif']
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -66,18 +66,6 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-				frangollo: {
-					50: '#fff8eb',
-					100: '#ffedc9',
-					200: '#ffda8b',
-					300: '#ffbf4f',
-					400: '#ffa724',
-					500: '#ff8800',
-					600: '#e06400',
-					700: '#bb4700',
-					800: '#983800',
-					900: '#7c2f00',
 				}
 			},
 			borderRadius: {

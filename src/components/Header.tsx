@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from './Button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 
 const navItems = [
   { label: 'Home', href: '#' },
@@ -14,13 +14,35 @@ const navItems = [
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('#');
   
   useEffect(() => {
     const handleScroll = () => {
+      // Update header style based on scroll position
       if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
+      }
+      
+      // Update active section based on scroll position
+      const sections = navItems.map(item => item.href);
+      
+      for (const section of sections) {
+        if (section === '#') continue;
+        
+        const element = document.querySelector(section);
+        if (!element) continue;
+        
+        const rect = element.getBoundingClientRect();
+        const offset = 100;
+        
+        if (rect.top <= offset && rect.bottom >= offset) {
+          setActiveSection(section);
+          break;
+        } else if (window.scrollY < 100) {
+          setActiveSection('#');
+        }
       }
     };
     
@@ -35,7 +57,10 @@ const Header: React.FC = () => {
     )}>
       <div className="container-custom flex items-center justify-between">
         <a href="#" className="flex items-center">
-          <span className="font-display text-2xl font-bold transition-colors">
+          <span className={cn(
+            "font-display text-2xl font-bold transition-all duration-300",
+            isScrolled ? "text-white" : "text-white gradient-text"
+          )}>
             LMS & AI Technology
           </span>
         </a>
@@ -47,19 +72,25 @@ const Header: React.FC = () => {
               <li key={item.label}>
                 <a 
                   href={item.href}
-                  className="text-foreground/80 hover:text-foreground font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+                  className={cn(
+                    "text-foreground/80 hover:text-foreground font-medium transition-all duration-200 relative py-1",
+                    activeSection === item.href ? "text-white after:w-full" : "text-blue-100/80 after:w-0",
+                    "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-indigo-400 after:transition-all hover:after:w-full"
+                  )}
                 >
                   {item.label}
                 </a>
               </li>
             ))}
           </ul>
-          <Button>Get Started</Button>
+          <Button className="btn-gradient text-white shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 transition-all duration-300">
+            Get Started <ChevronRight className="ml-1 h-4 w-4" />
+          </Button>
         </nav>
         
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden focus:outline-none"
+          className="md:hidden focus:outline-none text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
@@ -70,7 +101,7 @@ const Header: React.FC = () => {
       {/* Mobile Navigation */}
       <div 
         className={cn(
-          'md:hidden absolute left-0 right-0 top-full px-4 py-5 glass transition-all duration-300 border-t border-border/50',
+          'md:hidden absolute left-0 right-0 top-full px-4 py-5 glass transition-all duration-300 border-t border-slate-700/30',
           isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0 pointer-events-none'
         )}
       >
@@ -79,7 +110,10 @@ const Header: React.FC = () => {
             <li key={item.label}>
               <a 
                 href={item.href}
-                className="block py-2 text-foreground/80 hover:text-foreground font-medium"
+                className={cn(
+                  "block py-2 font-medium transition-colors",
+                  activeSection === item.href ? "text-white" : "text-blue-100/80"
+                )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
@@ -87,7 +121,9 @@ const Header: React.FC = () => {
             </li>
           ))}
           <li className="pt-2">
-            <Button className="w-full">Get Started</Button>
+            <Button className="w-full btn-gradient text-white">
+              Get Started <ChevronRight className="ml-1 h-4 w-4" />
+            </Button>
           </li>
         </ul>
       </div>

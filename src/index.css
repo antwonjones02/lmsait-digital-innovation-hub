@@ -8,24 +8,24 @@
 
 @layer base {
   :root {
-    /* Modern professional color palette */
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    /* Light, professional color palette */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
     
-    --card: 222 47% 13%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
     
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
     
     --primary: 224 76% 48%;
     --primary-foreground: 210 40% 98%;
     
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
     
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 25% 46%;
     
     --accent: 224 76% 48%;
     --accent-foreground: 210 40% 98%;
@@ -33,8 +33,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
     
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 224 76% 48%;
     
     --radius: 0.5rem;
@@ -55,8 +55,13 @@
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
   
-  /* Glass morphism effect - enhanced for modern look */
+  /* Glass morphism effect - lighter for modern look */
   .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg;
+  }
+  
+  /* Dark glass for contrast elements */
+  .glass-dark {
     @apply bg-slate-900/80 backdrop-blur-xl border border-slate-700/30 shadow-xl;
   }
   
@@ -78,7 +83,7 @@
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-slate-900;
+    @apply bg-slate-100;
   }
   
   ::-webkit-scrollbar-thumb {
@@ -177,17 +182,22 @@
   
   .card-3d:hover {
     transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
   }
 
   /* Gradient overlay for sections */
   .gradient-overlay {
-    background: linear-gradient(to bottom, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.8));
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
   }
 
-  /* Frosted glass card */
+  /* Frosted glass card - light version */
   .frosted-card {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+    @apply bg-white/90 backdrop-blur-lg border border-white/50 shadow-lg;
+  }
+
+  /* Frosted glass card - dark version for contrast */
+  .frosted-card-dark {
+    @apply bg-slate-900/90 backdrop-blur-lg border border-slate-800/50 shadow-lg;
   }
 
   /* Subtle hover effect for interactive elements */
@@ -197,13 +207,28 @@
 
   .hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
   }
 
   /* Gradient text */
   .gradient-text {
     @apply text-transparent bg-clip-text;
     background-image: linear-gradient(to right, #4f46e5, #6366f1, #818cf8);
+  }
+
+  /* Light gradient background */
+  .light-gradient-bg {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9, #e2e8f0);
+  }
+
+  /* Soft shadow */
+  .soft-shadow {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  }
+
+  /* Accent border */
+  .accent-border {
+    @apply border-l-4 border-indigo-500 pl-4;
   }
 }
 
@@ -238,12 +263,12 @@
   
   /* Award badge style - refined */
   .award-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-900/30 text-indigo-100 backdrop-blur-lg border border-indigo-600/20 shadow-inner shadow-indigo-400/10;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700 border border-indigo-200 shadow-sm;
   }
 
   /* Tech card style - modernized */
   .tech-card {
-    @apply bg-slate-800/50 backdrop-blur-lg border border-slate-700/30 rounded-lg shadow-lg hover:shadow-indigo-500/10 transition-all duration-300 card-3d;
+    @apply bg-white backdrop-blur-lg border border-slate-100 rounded-lg shadow-md hover:shadow-indigo-500/10 transition-all duration-300 card-3d;
   }
   
   /* Pulse glow effect - more subtle */
@@ -282,7 +307,7 @@
 
   /* Modern card design */
   .modern-card {
-    @apply bg-slate-800/50 backdrop-blur-lg border border-slate-700/30 rounded-xl p-6 shadow-lg hover-lift;
+    @apply bg-white backdrop-blur-lg border border-slate-100 rounded-xl p-6 shadow-md hover-lift;
   }
 
   /* Sleek button */
@@ -294,13 +319,18 @@
 
   /* Divider line */
   .divider {
-    @apply w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent my-8;
+    @apply w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent my-8;
   }
 
   /* Feature icon container */
   .feature-icon {
     @apply w-12 h-12 flex items-center justify-center rounded-xl 
-           bg-indigo-900/30 text-indigo-400 
-           border border-indigo-800/50;
+           bg-indigo-100 text-indigo-600 
+           border border-indigo-200;
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply bg-white rounded-lg p-4 shadow-sm border border-slate-100;
   }
 }

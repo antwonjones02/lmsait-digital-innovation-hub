@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from './Button';
@@ -8,6 +7,7 @@ const navItems = [
   { label: 'Home', href: '#' },
   { label: 'Services', href: '#services' },
   { label: 'About', href: '#about' },
+  { label: 'Testimonials', href: '#testimonials' },
   { label: 'Contact', href: '#contact' },
 ];
 
